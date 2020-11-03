@@ -1,24 +1,35 @@
-import React from 'react';
-import { ScrollView, View, BackHandler } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View } from 'react-native';
 import Aaa from '../components/aaaaa';
+import Axios from 'axios';
+// import LogI from '../components/LogIn/LogIn';
+// const axios = require('axios');
 
-const App = () => {
+const App = props => {
+  const [logedIn, setLogedIn] = useState('');
+  const [Docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    Axios.get('https://jsonbox.io/box_1297d688082dece8e90d/5f7d2b977059510017e07289').then(({ data }) => {
+      setLogedIn(data.aluno);
+      setDocs(data.arquivos);
+      console.log(data)
+    })
+  }, [props])
+
 
   return <>
-    <View>
-      <Aaa
-        docName="Plano de Atividades"
+    <View style={{ alignItems: "center" }}>
+      {Docs.map((doc, index) => <Aaa key={index}
+        docName={doc.documento}
         docLink="http://www.fatecid.com.br/site/wp-content/uploads/downloads/estagio/PlanodeAtividades.docx"
-        progressStatus={true}
-        currentProgress={2}
-      />
-      <Aaa
-        docName="Relatório Final"
-        docLink="http://www.fatecid.com.br/site/wp-content/uploads/downloads/estagio/RelatorioFinal.docx"
-        progressStatus={true}
-        currentProgress={4}
-      />
+        progressStatus={doc.progressStatus}
+        currentProgress={doc.currentProgress}
+        status={doc.status}
+        notes={doc.notes}
+      />)}
     </View>
+
   </>
 }
 

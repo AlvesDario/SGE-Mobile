@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-const App = () => {
-
+const App = props => {
+    const { status, notes } = props;
     return <>
-        <Text >Entrega pendente</Text>
-        <Text >anotações</Text>
+        <Text >{status}</Text>
+        <Text >{notes}</Text>
     </>
 }
 
