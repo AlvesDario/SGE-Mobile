@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { sendGridEmail } from 'react-native-sendgrid'
 
@@ -9,7 +9,7 @@ const API_KEY =
 const App = (props) => {
     const [email, setEmail] = useState('');
     const [verifyCode, setVerifyCode] = useState('')
-    // const [validMail, setValidMail] = useState(true);
+
     const [buttonText, setButtonText] = useState('Entrar')
     const [code, setCode] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -49,8 +49,11 @@ const App = (props) => {
             return sendEmail(code);
 
         if (buttonText === 'Verificar codigo') {
-            if (code === verifyCode)
+            if (code === verifyCode) {
+                AsyncStorage.setItem('logedInWith', email).then(() => {
                 props.onLogin(email);
+                })
+            }
             else
                 setErrorMessage('Codigo errado');
         }
