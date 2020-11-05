@@ -2,18 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import Aaa from '../components/aaaaa';
 import Axios from 'axios';
-// import LogI from '../components/LogIn/LogIn';
-// const axios = require('axios');
 
 const App = props => {
   const [logedIn, setLogedIn] = useState('');
   const [Docs, setDocs] = useState([]);
 
   useEffect(() => {
-    Axios.get('https://jsonbox.io/box_1297d688082dece8e90d/5f7d2b977059510017e07289').then(({ data }) => {
-      setLogedIn(data.aluno);
+    Axios.get(`https://jsonbox.io/box_1297d688082dece8e90d/?q=aluno:${props.Login}`).then(({ data }) => {
       setDocs(data.arquivos);
-      console.log(data)
+      console.log(data);
     })
   }, [props])
 

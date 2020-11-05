@@ -2,10 +2,11 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
+import { sendGridEmail } from 'react-native-sendgrid'
 
 const API_KEY = 
 
-const App = () => {
+const App = (props) => {
     const [email, setEmail] = useState('');
     const [verifyCode, setVerifyCode] = useState('')
     // const [validMail, setValidMail] = useState(true);
@@ -23,24 +24,15 @@ const App = () => {
         setButtonText('enviando email...');
         // Enviar o email
 
-        const sgMail = require('@sendgrid/mail')
-        sgMail.setApiKey(API_KEY)
-        const msg = {
-            to: { email }, // Change to your recipient
-            from: 'no-reply@sge-tcc.live', // Change to your verified sender
-            subject: 'Codigo de verificacao SGE',
-            text: 'seu codigo de acesso e: ' + code,
-            }
-        sgMail
-            .send(msg)
-            .then(() => {
-                console.log('Email sent')
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-
-
+        const sendRequest = sendGridEmail(API_KEY, email, 'no-reply@sge-tcc.live', 'Codigo de verificacao SGE', 'seu codigo de acesso e: ' + code)
+        sendRequest.then(() => {
+            setButtonText('Codigo enviado');
+            setTimeout(() => {
+                setButtonText('Verificar codigo')
+            }, 3000)
+        }).catch((error) => {
+            console.log(error)
+        });
     }
 
     useEffect(() => {
@@ -58,9 +50,9 @@ const App = () => {
 
         if (buttonText === 'Verificar codigo') {
             if (code === verifyCode)
-                console.log(true)
+                props.onLogin(email);
             else
-                setErrorMessage('Codigo errado')
+                setErrorMessage('Codigo errado');
         }
 
     }

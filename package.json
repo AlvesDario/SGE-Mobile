@@ -20,6 +20,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-azure-ad-2": "^1.0.5",
     "react-native-paper": "3.6.0",
+    "react-native-sendgrid": "^1.0.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
