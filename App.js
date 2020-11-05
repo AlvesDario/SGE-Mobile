@@ -1,27 +1,17 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-
 // or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage'
 
 export default function App() {
+  const [loginMail, setLoginMail] = useState('');
   return (
     <View style={styles.container}>
-      <LoginPage />
-      {/* <HomePage /> */}
-      {/* <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-      <Card>
-        <AssetExample />
-      </Card>
-       */}
+      {!loginMail ? <LoginPage onLogin={(mail)=> setLoginMail(mail)} />:
+      <HomePage Login={loginMail} />}
     </View>
   );
 }
@@ -31,7 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    // backgroundColor: '#ecf0f1',
     backgroundColor:"#FFFAEF",
     padding: 8,
   },
