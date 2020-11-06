@@ -2,25 +2,16 @@ import React, { useState } from 'react';
 import DownloadButton from './atomic_components/downloadButton';
 import Status from './atomic_components/status';
 import ProgressBar from './atomic_components/progressBar';
-import { Button } from 'react-native-paper';
 
 const App = props => {
-    const [showDetails, setShowDetails] = useState(false);
     const { document, sampleLink, progressStatus, currentProgress, status, notes } = props;
 
-    const handleButtonClick = () => {
-        setShowDetails(!showDetails);
-    }
-
     return <>
-        <DownloadButton 
+        <DownloadButton
             text={document}
             link={sampleLink}
-            onClick={handleButtonClick}
+            uploadFunction={()=>{console.log('file uploaded successfully!')}}
         />
-        {showDetails && <>
-            <Button></Button><Button></Button>
-        </>}
         <ProgressBar progressStatus={progressStatus} currentProgress={currentProgress} />
         <Status status={status} notes={notes} />
     </>
