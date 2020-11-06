@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage'
 
-export default function App() {
+const App = props => {
   const [loginMail, setLoginMail] = useState('');
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function App() {
         setLoginMail(value);
       }
     })
-  }, []);
+  }, [props]);
 
   return (
     <View style={styles.container}>
@@ -24,6 +24,8 @@ export default function App() {
     </View>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

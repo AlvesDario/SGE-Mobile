@@ -6,7 +6,7 @@ import { Button } from 'react-native-paper';
 
 const App = props => {
     const [showDetails, setShowDetails] = useState(false);
-    const {docName, docLink, progressStatus, currentProgress, status, notes} = props;
+    const { document, sampleLink, progressStatus, currentProgress, status, notes } = props;
 
     const handleButtonClick = () => {
         setShowDetails(!showDetails);
@@ -14,8 +14,8 @@ const App = props => {
 
     return <>
         <DownloadButton 
-            text={docName}
-            link={docLink}
+            text={document}
+            link={sampleLink}
             onClick={handleButtonClick}
         />
         {showDetails && <>
