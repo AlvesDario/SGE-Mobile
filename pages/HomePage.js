@@ -26,7 +26,7 @@ const App = props => {
     Axios.get(USER_FILES).then(({ data }) => {
       console.log(data);
       if (Array.isArray(data) && data.length) {
-      setDocs(data.arquivos);
+        setDocs(data.arquivos);
       }
       else {
         setDocs([
