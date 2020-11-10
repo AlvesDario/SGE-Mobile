@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
-
+import { WebView } from "react-native-webview";
 
 const App = props => {
   const [showDetails, setShowDetails] = useState(false);
