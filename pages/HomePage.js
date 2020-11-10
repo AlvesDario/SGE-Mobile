@@ -21,6 +21,17 @@ const App = props => {
     }
   }
 
+  const setAvaliador = async (avaliadorName) => {
+    setUserFiles({ ...userFiles, avaliador: avaliadorName });
+    console.log(userFiles);
+    return await Axios.put(`https://jsonbox.io/box_1297d688082dece8e90d/alunos/${userFiles._id}`, {
+      email: userFiles.email,
+      nome: userFiles.nome,
+      arquivos: userFiles.arquivos,
+      avaliador: avaliadorName
+    });
+  }
+
   useEffect(() => {
     const initUser = async () => {
       const user = await Axios.get(USER_FILES).then(async ({ data: userData }) => {
@@ -48,10 +59,8 @@ const App = props => {
         ];
         let docsID = await Promise.all(docs.map(async doc => {
           let docSent = await Axios.post('https://jsonbox.io/box_1297d688082dece8e90d/arquivos', doc);
-          console.log(docSent.data, " dentro do loop");
-          return(docSent.data._id);
+          return (docSent.data._id);
         }))
-        console.log(docsID, " fora do loop")
         Axios.put(`https://jsonbox.io/box_1297d688082dece8e90d/aluno/${user._id}`, {
           nome: user.nome,
           avaliador: user.avaliador,
@@ -67,6 +76,7 @@ const App = props => {
     <View style={{ alignItems: "center" }}>
       {Array.isArray(userFiles.arquivos) && userFiles.arquivos.map((doc) => <Aaa key={doc}
         docID={doc}
+        avaliador={[userFiles.avaliador, setAvaliador]}
       />)}
     </View>
 
