@@ -39,15 +39,13 @@ const App = props => {
           setUserFiles(userData[0]);
           return userData[0];
         } else {
-          return Axios.post('https://jsonbox.io/box_1297d688082dece8e90d/alunos', {
+          let response = await Axios.post('https://jsonbox.io/box_1297d688082dece8e90d/alunos', {
             email: props.Login,
             nome: props.Login.split('@')[0].replace('.', ''),
             arquivos: [],
             avaliador: ''
-          }).then(({ data }) => {
-            setUserFiles(data);
-            return data;
-          });
+          })
+          return response.data;
         }
       })
 
@@ -67,6 +65,8 @@ const App = props => {
           email: user.email,
           arquivos: docsID
         });
+      } else {
+        setUserFiles(user);
       }
     }
     initUser();

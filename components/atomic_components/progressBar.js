@@ -9,12 +9,13 @@ const App = props => {
       style={{
         width: '90%',
         paddingLeft: '5%',
+        marginTop:10
         // marginTop: 80,
         // height: 800,
         // backgroundColor: '#B0D8D0' 
       }}>
       <View style={{
-        backgroundColor: '#B0D8D0',
+        backgroundColor: '#656565',
         borderRadius: 5,
         
         shadowColor: "#000",
@@ -27,7 +28,7 @@ const App = props => {
 
         elevation: 19
       }}>
-        <View style={{ backgroundColor: "#58A6B0", width: `${props.currentProgress * 100 / NUMBER_OF_STEPS}%`, height: 60, borderRadius: 5 }}></View>
+        <View style={{ backgroundColor: "#1B1B1B", width: `${props.currentProgress * 100 / NUMBER_OF_STEPS}%`, height: 60, borderRadius: 5 }}></View>
         <View style={[styles.bola, {left: `${props.currentProgress/NUMBER_OF_STEPS*100-10}%`}]}>
           <Image
             style={[
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 60 / 2,
-    backgroundColor: "#58A6B0",
+    backgroundColor: "#171717",
     alignItems: "center",
     justifyContent: "center",
 

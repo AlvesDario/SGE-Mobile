@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
-import { WebView } from "react-native-webview";
+import { Text, TouchableOpacity, StyleSheet, Linking, View } from 'react-native';
 
 const App = props => {
   const [showDetails, setShowDetails] = useState(false);
 
   const DownloadAndUpload = (downloadLink, uploadFunction) => {
     if (downloadLink)
-      return <>
+      return <View style={{flexDirection: 'row'}}>
         <TouchableOpacity style={styles.smallButton} onPress={downloadClick}><Text style={styles.buttonText} >download</Text></TouchableOpacity>
         <TouchableOpacity style={styles.smallButton} onPress={uploadFunction}><Text style={styles.buttonText} >upload</Text></TouchableOpacity>
-      </>
+      </View>
     return <>
       <TouchableOpacity style={styles.smallButton} onPress={uploadFunction}><Text style={styles.buttonText} >upload</Text></TouchableOpacity>
     </>
@@ -42,10 +41,12 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "#154664",
-    height: 42,
+    backgroundColor: "#0C0B0B",
+    height: 48,
     width: 200,
-    borderRadius: 6
+    borderRadius: 6,
+    borderColor: '#FFF',
+    borderWidth: 2
   },
   buttonText: {
     color: "#FFF",
@@ -57,9 +58,11 @@ const styles = StyleSheet.create({
   smallButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "#154664",
+    backgroundColor: "#0C0B0B",
     height: 42,
-    width: 90,
-    borderRadius: 6
+    width: 100,
+    borderRadius: 6,
+    borderColor: '#FFF',
+    borderWidth: 2
   }
 })

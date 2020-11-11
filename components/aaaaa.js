@@ -96,31 +96,35 @@ const App = props => {
             <Picker.Item label={"selecione"} value={""} />
             {Array.isArray(avaliadorList) && avaliadorList.map((nome, index) => <Picker.Item key={index} label={nome} value={nome} />)}
           </Picker>
-
-          <TouchableHighlight
-            style={{ ...styles.openButton, backgroundColor: "#FFF", borderColor: "#000" }}
-            onPress={() => {
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <Text style={{ ...styles.textStyle, color: "#000" }}>Cancelar</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={{ ...styles.openButton, backgroundColor: "#000", borderColor: "#FFF" }}
-            onPress={handleConfirm}
-          >
-            <Text style={{ ...styles.textStyle, color: "#FFF" }}>Confirmar</Text>
-          </TouchableHighlight>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableHighlight
+              style={{ ...styles.openButton, backgroundColor: "#FFF", borderColor: "#000" }}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={{ ...styles.textStyle, color: "#000" }}>Cancelar</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={{ ...styles.openButton, backgroundColor: "#000", borderColor: "#FFF" }}
+              onPress={handleConfirm}
+            >
+              <Text style={{ ...styles.textStyle, color: "#FFF" }}>Confirmar</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     </Modal>
-    <DownloadButton
-      text={fileData.document}
-      link={fileData.sampleLink}
-      uploadFunction={handleButtonClick}
-    />
-    <ProgressBar progressStatus={fileData.progressStatus} currentProgress={fileData.currentProgress} />
-    <Status status={fileData.status} notes={fileData.notes} />
+    <View style={styles.container}>
+      <DownloadButton
+        text={fileData.document}
+        link={fileData.sampleLink}
+        uploadFunction={handleButtonClick}
+      />
+      <ProgressBar progressStatus={fileData.progressStatus} currentProgress={fileData.currentProgress} />
+      <Status status={fileData.status} notes={fileData.notes} />
+    </View>
+
   </>
 }
 const styles = StyleSheet.create({
@@ -129,6 +133,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22
+  },
+  container: {
+    marginTop: 20,
+    marginBottom: 20,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   modalView: {
     margin: 20,
