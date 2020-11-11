@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#FFFAEF",
+    backgroundColor: "#fff",
     padding: 8,
   },
   paragraph: {
