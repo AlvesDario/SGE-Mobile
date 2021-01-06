@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.3.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "expo": "^38.0.10",
     "expo-cli": "^3.27.14",
     "expo-document-picker": "~8.2.1",
